@@ -3,6 +3,7 @@ import pinoHttp from 'pino-http';
 import pino from 'pino';
 import cors from 'cors';
 import contactsRouter from './routers/contacts.js';
+import authRouter from './routers/auth.js';
 
 import dotenv from 'dotenv';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
@@ -28,6 +29,7 @@ export const setupServer = () => {
 
   app.use(pinoHttp({ logger }));
 
+  app.use(authRouter);
   app.use(contactsRouter);
 
   app.use('/', notFoundHandler);

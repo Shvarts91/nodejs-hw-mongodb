@@ -17,6 +17,8 @@ import { authenticate } from '../middlewares/authenticate.js';
 
 const router = Router();
 
+router.use(authenticate);
+
 router.get('/contacts', ctrlWrapper(getContactsController));
 
 router.get(
@@ -43,8 +45,6 @@ router.delete(
   isValidId,
   ctrlWrapper(deleteContactController),
 );
-
-router.use(authenticate);
 
 router.get('/', ctrlWrapper(getContactsController));
 
