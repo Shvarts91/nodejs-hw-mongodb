@@ -18,14 +18,13 @@ const usersSchema = new Schema(
   },
   {
     timestamps: true,
-    toJSON: {
-      transform(doc, ret) {
-        delete ret.password;
-        delete ret.__v;
-        return ret;
-      },
-    },
   },
 );
+
+usersSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
 
 export const UsersCollection = model('users', usersSchema);
