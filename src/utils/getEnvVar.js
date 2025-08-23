@@ -2,13 +2,25 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export const getEnvVar = (env) => {
-  const envConfig = {
-    MONGODB_USER: process.env.MONGODB_USER,
-    MONGODB_PASSWORD: process.env.MONGODB_PASSWORD,
-    MONGODB_URL: process.env.MONGODB_URL,
-    MONGODB_DB: process.env.MONGODB_DB,
-  };
+// export const getEnvVar = (key) => {
+//   const value = process.env[key];
 
-  return envConfig[env];
+//   if (value !== undefined) {
+//     return value;
+//   }
+
+//   throw new Error(`Environment variable ${key} is not defined`);
+// };
+export const getEnvVar = (key, defaultValue) => {
+  const value = process.env[key];
+
+  if (value !== undefined) {
+    return value;
+  }
+
+  if (defaultValue !== undefined) {
+    return defaultValue;
+  }
+
+  throw new Error(`Environment variable ${key} is not defined`);
 };

@@ -10,7 +10,6 @@ const parseIsFavourite = (value) => {
   if (!['true', 'false'].includes(value)) {
     return;
   }
-  console.log('value', value);
 
   return value === 'true';
 };

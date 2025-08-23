@@ -9,6 +9,7 @@ import dotenv from 'dotenv';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import cookieParser from 'cookie-parser';
+import { UPLOAD_DIR } from './constants/index.js';
 
 dotenv.config();
 
@@ -20,7 +21,7 @@ const logger = pino({
   },
 });
 
-export const setupServer = () => {
+export const startServer = () => {
   const app = express();
 
   app.use(express.json());
@@ -41,6 +42,7 @@ export const setupServer = () => {
     }),
   );
 
+  app.use('/uploads', express.static(UPLOAD_DIR));
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
