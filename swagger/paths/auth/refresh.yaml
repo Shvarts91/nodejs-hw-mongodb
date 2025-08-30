@@ -1,0 +1,45 @@
+tags:
+  - Auth
+summary: Refresh user session
+operationId: refreshUserSession
+description: 'Generate a new access token using a valid refresh token'
+security: []   # часто refresh делают без bearerAuth, но с телом запроса
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - refreshToken
+        properties:
+          refreshToken:
+            type: string
+            description: Valid refresh token
+            example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+responses:
+  '200':
+    description: Successfully refreshed token
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Token refreshed successfully
+            data:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  description: New JWT access token
+                  example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+  '401':
+    description: Invalid or expired refresh token

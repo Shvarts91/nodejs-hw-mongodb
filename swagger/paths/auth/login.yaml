@@ -1,0 +1,69 @@
+tags:
+  - Auth
+summary: Login user
+operationId: loginUser
+description: 'Authenticate a user and return an access token'
+security: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            description: "User's email address"
+            type: string
+            format: email
+            example: 'johndoe@example.com'
+          password:
+            description: "User's password"
+            type: string
+            format: password
+            example: 'StrongPassw0rd!'
+responses:
+  '200':
+    description: Successfully authenticated
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully logged in!
+            data:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  description: JWT access token
+                  example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+                refreshToken:
+                  type: string
+                  description: Refresh token
+                  example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+  '400':
+    description: Invalid credentials
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: Invalid email or password
+  '404':
+    $ref: '../../components/responses/404.yaml'
