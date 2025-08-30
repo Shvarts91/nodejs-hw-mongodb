@@ -6,7 +6,7 @@ description: 'Register a new user with payload'
 security: []
 requestBody:
   content:
-    multipart/form-data:
+    application/json:
       schema:
         type: object
         required:
@@ -28,10 +28,6 @@ requestBody:
             type: string
             format: password
             example: 'StrongPassw0rd!'
-          avatar:
-            description: "User's avatar photo"
-            type: string
-            format: binary
 responses:
   '201':
     description: User successfully registered

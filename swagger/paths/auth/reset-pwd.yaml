@@ -3,7 +3,8 @@ tags:
 summary: Reset password
 operationId: resetPassword
 description: 'Reset user password using a valid reset token'
-security: []
+security:
+  - bearerAuth: []
 requestBody:
   content:
     application/json:
@@ -11,13 +12,13 @@ requestBody:
         type: object
         required:
           - token
-          - newPassword
+          - password
         properties:
           token:
             type: string
             description: Reset token received via email
             example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
-          newPassword:
+          password:
             type: string
             format: password
             description: New password

@@ -117,10 +117,13 @@ export const requestResetToken = async (email) => {
 
 export const resetPassword = async (payload) => {
   let entries;
+  console.log(payload);
 
   try {
     entries = jwt.verify(payload.token, getEnvVar('JWT_SECRET'));
-  } catch {
+  } catch (error) {
+    console.log(error);
+
     throw createHttpError(401, 'Token is expired or invalid.');
   }
 
