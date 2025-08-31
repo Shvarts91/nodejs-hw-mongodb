@@ -3,8 +3,7 @@ tags:
 summary: Reset password
 operationId: resetPassword
 description: 'Reset user password using a valid reset token'
-security:
-  - bearerAuth: []
+security: []
 requestBody:
   content:
     application/json:
