@@ -29,27 +29,12 @@ parameters:
       enum: ['asc', 'desc']
 
   - in: query
-    name: name
-    schema:
-      type: string
-
-  - in: query
-    name: phoneNumber
-    schema:
-      type: string
-
-  - in: query
-    name: email
-    schema:
-      type: string
-
-  - in: query
     name: isFavourite
     schema:
       type: boolean
 
   - in: query
-    name: contactType
+    name: type
     schema:
       type: string
       enum: ['work', 'home', 'personal']
